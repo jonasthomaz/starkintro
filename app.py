@@ -8,4 +8,4 @@ app.register_blueprint(v1_blueprint)
 
 @app.route('/')
 def hello():
-    return 'Hello, World!'
+    return 'StarkIntro'
