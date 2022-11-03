@@ -8,10 +8,22 @@ class TransferHandler(HandlerABC):
     __application = Transfer()
 
     def post_create_transfer(self):
-        # Cria o obejto de notificação
-
         notification = TransferNotification(request.json)
         self.__application.create_transfer(notification)
-
-        # Chama a aplicação com a noitificação
         return self.response({"response": "teste"})
+
+    def get_transfers(self):
+        return self.response(self.__application.get_transfers())
+
+    def get_transfer_info(self, id: int):
+        return self.response(self.__application.get_transfer_info(id))
+
+    def get_transfer_pdf(self, id: int):
+        return self.response(self.__application.get_transfer_pdf(id))
+
+    def get_transfers_log(self):
+        logs = self.__application.get_transfers_log()
+        return self.response(logs)
+
+    def get_transfer_log_byid(self, id: int):
+        return self.response(self.__application.get_transfer_log(id))
