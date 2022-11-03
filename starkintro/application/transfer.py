@@ -1,6 +1,7 @@
 import starkbank
 from starkintro.infra.Config import Config
 from starkintro.domain.value_objects.transfer_notification import TransferNotification
+from starkintro.domain.enumatetor import TransferListFilter
 
 
 class Transfer:
@@ -28,3 +29,6 @@ class Transfer:
 
         for transfer in transfers:
             print(transfer)
+
+    def get_transfer_info(self, id: int, pdf: bool = False):
+        ...
