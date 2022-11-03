@@ -21,8 +21,9 @@ class TransferHandler(HandlerABC):
     def get_transfer_pdf(self, id: int):
         return self.response(self.__application.get_transfer_pdf(id))
 
-    def get_transfer_log(self: int):
-        ...
+    def get_transfers_log(self):
+        logs = self.__application.get_transfers_log()
+        return self.response(logs)
 
     def get_transfer_log_byid(self, id: int):
-        ...
+        return self.response(self.__application.get_transfer_log(id))

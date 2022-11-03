@@ -32,11 +32,28 @@ class Transfer(BaseApp):
         return return_transfers
 
     def get_transfer_pdf(self, _id: int):
-        # Aqui o pdf é gerado, se fosse uma app, faria o download do mesmo e colocaria um link disponivel
-        # o retorno vai ser apenas um comentario de que foi feito certinho
         transfer_info = {}
         transfer = starkbank.transfer.pdf(_id, user=self._stark_user)
         if transfer:
             transfer_info = {"pdf": "pdf gerado com sucesso"}
-
         return transfer_info
+
+    def get_transfers_log(self):
+        return_logs = {}
+        logs = starkbank.transfer.log.query(after="2022-11-01", before="2022-11-15", user=self._stark_user)
+        for log in logs:
+            return_logs[log.id] = log.__dict__
+
+        return return_logs
+
+    def get_transfer_log(self, _id: int):
+        return_log = {}
+        log = starkbank.transfer.log.get(id=_id, user=self._stark_user)
+        if log:
+            return_log = {
+                "id": log.id,
+                "created": log.created,
+                "type": log.type
+            }
+
+        return return_log
