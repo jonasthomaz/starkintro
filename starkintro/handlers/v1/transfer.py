@@ -12,11 +12,14 @@ class TransferHandler(HandlerABC):
         self.__application.create_transfer(notification)
         return self.response({"response": "teste"})
 
+    def get_transfers(self):
+        return self.response(self.__application.get_transfers())
+
     def get_transfer_info(self, id: int):
-        ...
+        return self.response(self.__application.get_transfer_info(id))
 
     def get_transfer_pdf(self, id: int):
-        ...
+        return self.response(self.__application.get_transfer_pdf(id))
 
     def get_transfer_log(self: int):
         ...
