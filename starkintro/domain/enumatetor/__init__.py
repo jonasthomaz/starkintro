@@ -13,3 +13,8 @@ class TransferListFilter(Enum):
     IDS = 'ids'
     SORT = 'sort'
     TAGS = 'tags'
+
+
+class IndividualIdentityStatus(Enum):
+    processing = 'processing'
+    created = 'created'
